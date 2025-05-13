@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1747101344949-1
+      author: harold
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_delivery
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: order_id
+                  type: BIGINT
+              - column:
+                  name: tracking_number
+                  type: VARCHAR(255)
+              - column:
+                  defaultValue: NONE
+                  name: status
+                  type: varchar(32)
+            tableName: delivery
+  - changeSet:
+      id: 1747101344949-2
+      author: harold
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: tracking_number
+            constraintName: uc_delivery_trackingnumber
+            tableName: delivery
+

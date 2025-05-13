@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: harold
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_order
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: item
+                  type: VARCHAR(255)
+              - column:
+                  name: tracking_number
+                  type: VARCHAR(255)
+              - column:
+                  defaultValue: "NONE"
+                  name: status
+                  type: varchar(32)
+            tableName: order
+  - changeSet:
+      id: 4
+      author: harold
+      changes:
+        - addUniqueConstraint:
+            columnNames: tracking_number
+            constraintName: uc_order_trackingnumber
+            tableName: order
+
